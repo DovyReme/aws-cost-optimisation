@@ -47,7 +47,29 @@
     - Avoid duplicate/unused indexes
     - Implement data life cycle management
     - Migrate to new RDS DB instance to reduce storage size.
-02:26
+## Aurora: Features and Cost
+## Aurora Global Database
+- Build a replicated, I/O between regions
+- Instances, storage, back up storage, and gross region data transfer.
+- Optimise by choosing appropriate numbers of regions, replicas, and headless cluster
+## Aurora Fast Clones 
+- No additional storage cost initially
+- Instances, backup storage, cost applies.
+- When not in use, drop the clone
+- Aurora, headless, clone cluster
+## Snapshot export to S3
+- Every export of data from the same snapshot is billed at full snapshot size, even while exporting, selective database or tables
+- Billed GB of snapshot size example, export of 100 GB of snapshot will cost $1, not storage encryption and put request are charged by S3 separately.
+- Optimise, by dropping, unneeded snapshot exports.
+
+## Optimising, Aurora reads I/O cost
+- Optimise queries to read from memory as much as possible
+- Monitor CloudWatch metrics metrics BufferCacheHitRatio (Percent)
+- Optimising and right size your DB instance.
+- Tune queries to avoid full table scans on large tables.
+- Use Aurora native back up and snapshots when possible. Logical backup will cause excessive reads.
+
+
 ### Cost Monitoring tools
 #### Cost allocation tags
 
